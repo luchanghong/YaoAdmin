@@ -19,11 +19,11 @@ class AdminAction {
 
     function checkCurrentAction() {
         $role_status = false;
-        if ( $this->act_verify ) {
+        if ($this->act_verify) {
             $cur_role = $this->cur_act;
-            foreach ( $cur_role as $value ) {
-                foreach ( $value['subact'] as $act ) {
-                    if ( $act['verify'] == $this->act_verify ) {
+            foreach ($cur_role as $value) {
+                foreach ($value['subact'] as $act) {
+                    if ($act['verify'] == $this->act_verify ) {
                         $role_status = true;
                     }
                 }
@@ -32,21 +32,22 @@ class AdminAction {
         if (!$role_status) {
             exit('无权限访问');
         }
+        return $this->getActionInfoByVerify($this->act_verify);
     }
 
     function getCurrentRoleActions() {
         $act_arr = $this->getAdminUserActions();
         $all_act = $this->getAllAdminActions();
-        foreach ( $all_act as $key=>&$val ) {
-            if ( !empty($val['subact']) ) {
-                foreach ( $val['subact'] as $k=>&$v ) {
-                    if ( !in_array($v['id'], $act_arr) ) {
+        foreach ($all_act as $key=>&$val) {
+            if (!empty($val['subact'])) {
+                foreach ($val['subact'] as $k=>&$v) {
+                    if (!in_array($v['id'], $act_arr)) {
                         unset($val['subact'][$k]);
                     }
                 }
             }
 
-            if ( empty($val['subact']) ) { unset($all_act[$key]); }
+            if (empty($val['subact'])) { unset($all_act[$key]); }
         }
 
         return $all_act;
@@ -91,7 +92,19 @@ class AdminAction {
         return $this->act_arr;
     }
 
-    function getActionInfo($id)
+    function getActionInfoByVerify($verify)
+    {
+        $this->db->select('id,pid,icon,title,target,verify,display,orderby');
+        $this->db->from('admin_action');
+        $this->db->where('verify', $verify);
+        $query = $this->db->get();
+        if ( $query->num_rows() > 0 ) {
+            return $query->row_array();
+        }
+        return array();
+    }
+
+    function getActionInfoById($id)
     {
         $this->db->select('id,pid,icon,title,target,verify,display,orderby');
         $this->db->from('admin_action');
