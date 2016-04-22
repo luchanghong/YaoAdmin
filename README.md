@@ -19,7 +19,7 @@ git clone https://github.com/luchanghong/YaoAdmin.git
 
 - 数据库配置
 
-基本数据库sql文件为**yaoadmin.sql**，可以直接导入本地库
+基本数据库sql文件为[yaoadmin.sql](https://github.com/luchanghong/YaoAdmin/blob/master/yaoadmin.sql)，可以直接导入本地库
 
 ```
 application/config/database.php
@@ -81,5 +81,7 @@ server {
 这里使用的是*php-fpm*的**9001**端口来做php解析
 
 ## 使用
+
+本地配置好虚拟域名或者IP，然后打开`http://www.XXX.com/admin`
 
 基础数据库里的管理员默认用户名：`admin	`，密码：`admin`，角色：`超级管理员`，也可以直接向数据库插入新的用户信息来测试
