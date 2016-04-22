@@ -10,7 +10,7 @@ PHP框架：[CodeIgniter](https://github.com/bcit-ci/CodeIgniter)
 ## 安装
 
 ```
-clone https://github.com/luchanghong/YaoAdmin.git
+git clone https://github.com/luchanghong/YaoAdmin.git
 ```
 
 ## 修改配置文件
