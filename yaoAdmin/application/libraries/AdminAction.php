@@ -12,7 +12,7 @@ class AdminAction {
     function __construct() {
         $this->CI = & get_instance();
         $this->db = $this->CI->db;
-        $this->admin_id = $this->CI->session->userdata('admin_id');
+        $this->admin_id = intval($this->CI->session->userdata('admin_id'));
 
         $this->cur_act = $this->getCurrentRoleActions();
     }
@@ -60,7 +60,7 @@ class AdminAction {
         $this->db->where('u.id', $this->admin_id);
         $query = $this->db->get();
 
-        if ( $query->num_rows() > 0 ) {
+        if ($query->num_rows() > 0) {
             $act = $query->row()->act;
             return unserialize($act);
         }
