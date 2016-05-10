@@ -21,7 +21,7 @@
                 foreach ($val['subact'] as $k=>$value) {
                     $isChecked = @in_array($value['id'], unserialize($role['act'])) ? ' checked' : '';
                     if ('控制面板' == $value['title']) {
-                        $isChecked = ' checked disabled';
+                        $isChecked = ' checked';
                         $value['title'] .= '（必选）';
                     }
                     echo '<label class="checkbox-inline">';
