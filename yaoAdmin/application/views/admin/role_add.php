@@ -1,3 +1,6 @@
+<link href="/static/css/icheck_skins/all.css" rel="stylesheet">
+<script src="/static/js/icheck.min.js"></script>
+
 <form action="" method="post" class="form-horizontal">
     <div class="form-group">
         <label for="input1" class="col-sm-2 control-label">角色名称</label>
@@ -17,8 +20,13 @@
                 echo "<td>";
                 foreach ($val['subact'] as $k=>$value) {
                     $isChecked = @in_array($value['id'], unserialize($role['act'])) ? ' checked' : '';
+                    if ('控制面板' == $value['title']) {
+                        $isChecked = ' checked disabled';
+                        $value['title'] .= '（必选）';
+                    }
                     echo '<label class="checkbox-inline">';
-                    echo "<input type=\"checkbox\" name=\"roleAct[]\" value=\"{$value['id']}\" {$isChecked}>{$value['title']}";
+                    echo "<input type=\"checkbox\" name=\"roleAct[]\" value=\"{$value['id']}\" {$isChecked}>
+                        <span class=\"label label-info\">{$value['title']}</span>";
                     echo '</label>';
                     echo ($k + 1) % 4 == 0 ? '<br>' : '';
                 }
@@ -34,3 +42,12 @@
         <input type="submit" name="submit" class="btn btn-primary" value="提交">
     </div>
 </form>
+
+<script type="text/javascript">
+    $('input').iCheck({ 
+      labelHover : true, 
+      cursor : true, 
+      checkboxClass : 'icheckbox_square-blue', 
+      increaseArea : '20%' 
+    });
+</script>

@@ -1,3 +1,6 @@
+<link href="/static/css/icheck_skins/all.css" rel="stylesheet">
+<script src="/static/js/icheck.min.js"></script>
+
 <form action="" method="post" class="form-horizontal">
     <div class="form-group">
         <label for="input1" class="col-sm-2 control-label">操作名称</label>
@@ -10,15 +13,14 @@
         <label for="input2" class="col-sm-2 control-label">icon图标</label>
         <div class="col-sm-10">
             <?php
-                // 参考 http://v3.bootcss.com/components/#glyphicons
-                $icon_arr = array('glass', 'music', 'star', 'film', 'th-list', 'cog');
+                $icon_arr = $this->config->item('admin_action_icon');
                 foreach ($icon_arr as $icon) {
                     $isChecked = $icon == $act['icon'] ? 'checked' : '';
                     echo "<input type=\"radio\" name=\"icon\" value=\"{$icon}\" {$isChecked}>
                         <span class=\"glyphicon glyphicon-{$icon}\"></span>&nbsp;&nbsp;";
                 }
             ?>
-
+            <span id="helpBlock" class="help-block">顶级菜单选择有效</span>
         </div>
     </div>
 
@@ -81,3 +83,12 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript">
+    $('input').iCheck({ 
+      labelHover : true, 
+      cursor : true, 
+      radioClass : 'iradio_square-blue', 
+      increaseArea : '20%' 
+    });
+</script>
