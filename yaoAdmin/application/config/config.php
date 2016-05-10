@@ -514,4 +514,7 @@ $config['proxy_ips'] = '';
 
 // 自定义设置
 // 参考 http://v3.bootcss.com/components/#glyphicons
-$config['admin_action_icon'] = array('glass', 'music', 'star', 'film', 'th-list', 'cog', 'user');
+$config['admin_action_icon'] = array(
+    'dashboard', 'menu-hamburger', 'pencil', 'folder-open',
+    'glass', 'music', 'star', 'film', 'th-list', 'cog', 'user',
+);
